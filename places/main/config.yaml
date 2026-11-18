@@ -1,0 +1,100 @@
+atmosphere:
+  clouds:
+    altitude: 900
+    density: 0.35
+    enabled: true
+    opacity: 0.6
+    thickness: 600
+    speed: 1
+  fog:
+    far: 1400
+    kind: linear
+    near: 250
+  look:
+    script: scripts/look-default.js
+  moon:
+    intensity: 3
+  sky:
+    kind: realistic
+    model: hosek
+  stars:
+    density: 0.6
+    enabled: true
+    milkyWay: 0.6
+  timeOfDay: 16.6
+  wind:
+    direction: 200
+    speed: 3
+defaultSpawnPoint:
+  x: 0
+  y:
+    terrain: 0
+  z: 0
+gravity:
+  x: 0
+  y: -24
+  z: 0
+# 3d: the engine draws this place, so it needs 3D graphics to open. A game that is only its HTML screen is mode ui.
+mode: 3d
+terrain:
+  decorations:
+    bindings:
+      grass:
+        - grass
+        - pebble
+    layers:
+      grass:
+        density: 26
+        items:
+          - kind: scripted
+            randomRotation: true
+            scale:
+              - 0.5
+              - 0.9
+            script: scripts/grass.js
+            seed: 1
+            wind:
+              force: 0.06
+        material:
+          kind: scripted
+          params:
+            blade: oklch(0.68 0.12 130)
+          script: scripts/grass-look.js
+      pebble:
+        density: 0.3
+        items:
+          - colorJitter:
+              hue: 0
+              value: 0.15
+            kind: scripted
+            params:
+              stone: "#9a9aa3"
+            randomRotation: true
+            scale:
+              - 0.6
+              - 1.6
+            script: scripts/pebble.js
+            seed: 1
+          - colorJitter:
+              hue: 0
+              value: 0.15
+            kind: scripted
+            params:
+              stone: "#4a4a52"
+            randomRotation: true
+            scale:
+              - 0.6
+              - 1.6
+            script: scripts/pebble.js
+            seed: 2
+  generator: scripts/terrain.js
+  kind: heightmap
+  materials:
+    - {albedo: cdn/texture-terrain-grass-realistic-albedo.png, antiTiling: stochastic, id: grass, pbr: true, textureScale: 3, tint: oklch(0.92 0.04 130)}
+    - {albedo: cdn/texture-terrain-sand-realistic-albedo.png, id: sand, pbr: true, textureScale: 2.5, tint: oklch(0.9 0.05 85)}
+    - {albedo: cdn/texture-terrain-rock-realistic-albedo.png, id: rock, pbr: true, tint: oklch(0.75 0.02 70)}
+    - {albedo: cdn/texture-terrain-gravel-realistic-albedo.png, id: gravel, pbr: true, tint: oklch(0.8 0.02 80)}
+  seed: 1
+  marks:
+    sea: {floorMaterial: sand, kind: sea, level: 0}
+    square: {center: {x: 0, z: 0}, clearScatter: true, falloff: 14, height: {terrain: 0}, kind: flatten, material: gravel, shape: {kind: circle, radius: 22}}

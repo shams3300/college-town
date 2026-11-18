@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "basedOnSpecVersion": 105,
+  "updatedAt": "2026-11-18T17:18:14.802Z",
+  "summary": "A multiplayer 3D seaside college town with custom coastal terrain, decorations, first-person humanoid players, and a per-player age-confirmation HUD. Its main cell also hosts a six-figure skinned 2D barista/review lineup, sharing a rig and actor behavior across a layered atlas character and single-image outfit/back-view takes.",
+  "scriptPaths": [],
+  "places": [
+    "places/main/config.yaml (mode 3d) - seaside college-town terrain, spawn/gravity, shore and gravel-square marks, materials and decoration bindings.",
+    "places/main/cells/x0z0.scene - places rig-test-barista and five labeled review takes: plain shirt, open shirt, open shirt/no bra, shirt held shut, and from behind; all use the shared rig and actor behavior with single-image review textures."
+  ],
+  "roots": [
+    "world.config.yaml - multiplayer entry: main place, player/camera templates, lighting, arrival, HUD/nametag and inputs.",
+    "templates/player.js#player - character body at feet (0,2,0), with humanoid locomotion then player movement behaviors.",
+    "templates/camera.js#camera - custom first-person look camera with camera behavior and yaw/pitch state.",
+    "scripts/ui.js - world HUD entry for the age question and ageNo/back view; ageYes clears it.",
+    "ui/nametag.js - renderer for other players' nametags.",
+    "places/main/config.yaml - main-place atmosphere, gravity, spawn, terrain materials, decorations and terrain generator."
+  ],
+  "shared": [
+    "scripts/lib/data/player.yml - movement and humanoid tuning shared by scripts/player.js and scripts/humanoid-locomotion.js.",
+    "scripts/lib/data/camera.yml - eye-height setting read by scripts/camera.js.",
+    "scripts/lib/rig2d-clips.js - procedural idle/nod/blink/talk and expression track builders used by scripts/rig2d-actor.js; expression targets are bones in scripts/rig2d.js."
+  ],
+  "notableExports": [
+    "sim.js - exports cadence, tick; world referee tick at 1s cadence.",
+    "scripts/arrival.js - exports onArrive, onLeave.",
+    "scripts/player.js - exports onInput, update; scripts/humanoid-locomotion.js - exports sit, onInput, update.",
+    "scripts/camera.js - exports finiteNumber, update.",
+    "scripts/terrain.js, scripts/flat-starter-terrain.js - each exports heightAt, materialAt.",
+    "scripts/grass.js, scripts/pebble.js - each exports geometry.",
+    "scripts/rig2d.js - exports skeleton, geometry, collider; scripts/rig2d-actor.js - exports onSpawn, hold, next, update.",
+    "scripts/lib/rig2d-clips.js - exports idle, nod, blink, talk, EMOTIONS, emotionHold, emotion."
+  ],
+  "ownership": [
+    "scripts/player.js - owns movement intent in namespaced self.session scratch; writes ageOk/ageNo, jump velocity and character velocity on the body.",
+    "scripts/arrival.js - resets each arriving player's ageOk and ageNo flags; scripts/ui.js reads them without owning them.",
+    "scripts/humanoid-locomotion.js - owns gait/turn scratch in its namespaced self.session; writes body yaw, animation channels and gaitSit/gaitSeated state.",
+    "scripts/camera.js - owns camera rig placement, rotation from presented view and hideLocalPlayer on the rig.",
+    "scripts/terrain.js - defines sampled terrain height/material weights; places/main/config.yaml owns material definitions, sea/square marks, decorations and generator selection.",
+    "scripts/rig2d.js - owns the cutout mesh, skeleton and per-vertex bone weights; scripts/rig2d-actor.js owns actor animation assignment and session.felt, and writes emotion/label text state.",
+    "sim.js - sole owner for shared world/place simulation state; currently tick is empty and writes no rows."
+  ],
+  "flows": [
+    "world.config.yaml engine.behaviors → scripts/arrival.js onArrive → arriving player's ageOk/ageNo reset false.",
+    "world.config.yaml ageYes/ageNo/ageBack inputs → scripts/player.js onInput → self.state.ageOk/ageNo; scripts/ui.js reads those flags for clear, age question or ageNo/back view.",
+    "scripts/ui.js → opaque tiled MOSAIC behind age question and ageNo/back views; question carries the 18+ content/asset warning and U.S. 2257 text.",
+    "scripts/player.js onInput writes namespaced moveIntent → scripts/player.js update → self.velocity using place gravity; ageOk false suppresses movement; jump input adds upward velocity when grounded and unparented.",
+    "templates/camera.js orientation.source look → engine-integrated self.view → scripts/camera.js update → camera rig feetPosition/rotation and local-player visibility.",
+    "scripts/player.js and scripts/humanoid-locomotion.js → scripts/lib/data/player.yml tuning; locomotion reads measured gait and writes animation channels.",
+    "places/main/config.yaml terrain.generator → scripts/terrain.js heightAt/materialAt; terrain marks/material ids and decoration bindings select the ground and scripts/grass.js, scripts/grass-look.js and scripts/pebble.js.",
+    "places/main atmosphere look.script → scripts/look-default.js; world.config.yaml lighting → scripts/lighting.js.",
+    "six rig scene objects → scripts/rig2d.js skeleton/geometry using shared mask params; rig-test-barista uses the layered atlas and five review takes use single-image textures.",
+    "each rig actor's state.idle/emotion/talk → scripts/rig2d-actor.js onSpawn/update → scripts/lib/rig2d-clips.js tracks → rig2d.js bone animation channels; cycle calls next through five emotions, and state.label resolves a sign whose state.text receives the current emotion."
+  ],
+  "behaviorFamilies": [
+    "scripts/pebble.js - reused by both pebble decoration items in places/main, varied by stone params, seed, scale and rotation.",
+    "scripts/grass.js - geometry for the grass layer; paired with scripts/grass-look.js, whose blade param and scatter context vary blade appearance by layer/ground.",
+    "scripts/rig2d.js and scripts/rig2d-actor.js - shared by rig-test-barista and five review takes; vary texture/revision, shared mask and actor idle, emotion, talk and label state."
+  ],
+  "probableOrphans": [
+    "scripts/flat-starter-terrain.js - not selected by places/main/config.yaml, which uses scripts/terrain.js."
+  ],
+  "migrationNotes": [
+    "The age gate is per-player state: arrival resets ageOk/ageNo; movement remains disabled until ageYes. The ageNo view retains its opaque mosaic and ageBack option.",
+    "player.js and humanoid-locomotion.js share the body session object; keep transient fields namespaced by script filename. Movement and gait tuning lives in scripts/lib/data/player.yml; speeds are metres per second.",
+    "Terrain generator supplies sampled terrain height/material only; places/main/config.yaml separately defines material ids, sea and flatten marks, and decorations. Sea is level 0 and the square is explicitly flattened to terrain height 0.",
+    "rig2d.js bone names/order jointly define skeleton indices, skinning weights and clip targets; keep them aligned when changing bones or scripts/lib/rig2d-clips.js.",
+    "For rig-test-barista, params.layers: 2 means a side-by-side atlas; review outfit/back-view textures are single-image and share the mask. Their texture/revision and scene ids are set in places/main/cells/x0z0.scene.",
+    "Emotion tracks own brows, mouth corners and blush; blink and talk independently own lid/eye and lip channels. Actor state.label is an object id whose state.text receives the current emotion; cycle advances the five-item REEL."
+  ]
+}

@@ -1,0 +1,103 @@
+# spawn-scene v2 yaml x0z0
+review-backview:
+  behavior: scripts/rig2d-actor.js
+  castShadow: true
+  feetPosition: {x: 8.15, y: {terrain: 0.15}, z: 3.35}
+  id: review-backview
+  material: {alphaTest: 0.5, roughness: 1, side: double}
+  primitive: {kind: scripted, params: {mask: {samples: /cdn/value.7fe210738f5f3e5635d06024e9b587ae3c59a45ba81a95a4e3ca96b1844c3e47.png}, rev: 2, texture: /cdn/value.6f4134a9f3b20ed9019546b56955b227ab3b8b62f95130feb69e2fc9d9aa8363.png}, script: scripts/rig2d.js}
+  rotation: {lookAt: {x: 4.200000000000001, y: 1.2, z: 4.770000000000001}}
+  scale: 1.2
+  state: {emotion: happy, idle: {breath: 1, duration: 4, hair: 1, sway: 1}, talk: false}
+  tags: [rig2d, review]
+review-backview-label:
+  feetPosition: {x: 8.15, y: {terrain: 2.15}, z: 3.35}
+  id: review-backview-label
+  rotation: {lookAt: {x: 4.200000000000001, y: 2.2, z: 4.770000000000001}}
+  tags: [review]
+  vector: "<svg viewBox='0 0 200 40' width='0.7m'><rect x='2' y='2' width='196' height='36' rx='18' fill='#0a0a0c' fill-opacity='0.55'/><text x='100' y='27' text-anchor='middle' font-family='sans-serif' font-size='16' fill='#ffd9a0'>take: from behind</text></svg>"
+review-openshirt:
+  behavior: scripts/rig2d-actor.js
+  castShadow: true
+  feetPosition: {x: 6.62, y: {terrain: 0.15}, z: -0.88}
+  id: review-openshirt
+  material: {alphaTest: 0.5, roughness: 1, side: double}
+  primitive: {kind: scripted, params: {mask: {samples: /cdn/value.7fe210738f5f3e5635d06024e9b587ae3c59a45ba81a95a4e3ca96b1844c3e47.png}, rev: 1, texture: /cdn/value.95dc4a589d4d4a309f5f0c934785b75f56eea16cdf03584f354a44e7852e8297.png}, script: scripts/rig2d.js}
+  rotation: {lookAt: {x: 2.6700000000000004, y: 1.2, z: 0.5400000000000005}}
+  scale: 1.2
+  state: {emotion: happy, idle: {breath: 1, duration: 4, hair: 1, sway: 1}, talk: false}
+  tags: [rig2d, review]
+review-openshirt-label:
+  feetPosition: {x: 6.62, y: {terrain: 2.15}, z: -0.88}
+  id: review-openshirt-label
+  rotation: {lookAt: {x: 2.6700000000000004, y: 2.2, z: 0.5400000000000005}}
+  tags: [review]
+  vector: "<svg viewBox='0 0 200 40' width='0.7m'><rect x='2' y='2' width='196' height='36' rx='18' fill='#0a0a0c' fill-opacity='0.55'/><text x='100' y='27' text-anchor='middle' font-family='sans-serif' font-size='18' fill='#ffd9a0'>new: open shirt</text></svg>"
+review-openshirt-nobra:
+  behavior: scripts/rig2d-actor.js
+  castShadow: true
+  feetPosition: {x: 7.13, y: {terrain: 0.15}, z: 0.53}
+  id: review-openshirt-nobra
+  material: {alphaTest: 0.5, roughness: 1, side: double}
+  primitive: {kind: scripted, params: {mask: {samples: /cdn/value.7fe210738f5f3e5635d06024e9b587ae3c59a45ba81a95a4e3ca96b1844c3e47.png}, rev: 1, texture: /cdn/value.933cc85be79eefb14447b596b435aa33936ecda22eea399b82f5141bba4123d8.png}, script: scripts/rig2d.js}
+  rotation: {lookAt: {x: 3.18, y: 1.2, z: 1.9500000000000006}}
+  scale: 1.2
+  state: {emotion: happy, idle: {breath: 1, duration: 4, hair: 1, sway: 1}, talk: false}
+  tags: [rig2d, review]
+review-openshirt-nobra-label:
+  feetPosition: {x: 7.13, y: {terrain: 2.15}, z: 0.53}
+  id: review-openshirt-nobra-label
+  rotation: {lookAt: {x: 3.18, y: 2.2, z: 1.9500000000000006}}
+  tags: [review]
+  vector: "<svg viewBox='0 0 200 40' width='0.7m'><rect x='2' y='2' width='196' height='36' rx='18' fill='#0a0a0c' fill-opacity='0.55'/><text x='100' y='27' text-anchor='middle' font-family='sans-serif' font-size='16' fill='#ffd9a0'>new: open shirt, no bra</text></svg>"
+review-plainshirt:
+  behavior: scripts/rig2d-actor.js
+  castShadow: true
+  feetPosition: {x: 6.11, y: {terrain: 0.15}, z: -2.29}
+  id: review-plainshirt
+  material: {alphaTest: 0.5, roughness: 1, side: double}
+  primitive: {kind: scripted, params: {mask: {samples: /cdn/value.7fe210738f5f3e5635d06024e9b587ae3c59a45ba81a95a4e3ca96b1844c3e47.png}, rev: 2, texture: /cdn/value.1aaf87e3fd716e2796bf780c44219b6381247a1a1e1e5c74234aba7723141eb4.png}, script: scripts/rig2d.js}
+  rotation: {lookAt: {x: 2.1600000000000006, y: 1.2, z: -0.8699999999999997}}
+  scale: 1.2
+  state: {emotion: happy, idle: {breath: 1, duration: 4, hair: 1, sway: 1}, talk: false}
+  tags: [rig2d, review]
+review-plainshirt-label:
+  feetPosition: {x: 6.11, y: {terrain: 2.15}, z: -2.29}
+  id: review-plainshirt-label
+  rotation: {lookAt: {x: 2.1600000000000006, y: 2.2, z: -0.8699999999999997}}
+  tags: [review]
+  vector: "<svg viewBox='0 0 200 40' width='0.7m'><rect x='2' y='2' width='196' height='36' rx='18' fill='#0a0a0c' fill-opacity='0.55'/><text x='100' y='27' text-anchor='middle' font-family='sans-serif' font-size='18' fill='#ffd9a0'>new: plain shirt</text></svg>"
+review-shirtheld:
+  behavior: scripts/rig2d-actor.js
+  castShadow: true
+  feetPosition: {x: 7.64, y: {terrain: 0.15}, z: 1.94}
+  id: review-shirtheld
+  material: {alphaTest: 0.5, roughness: 1, side: double}
+  primitive: {kind: scripted, params: {mask: {samples: /cdn/value.7fe210738f5f3e5635d06024e9b587ae3c59a45ba81a95a4e3ca96b1844c3e47.png}, rev: 2, texture: /cdn/value.80a35aa0017d8ed69d913890f43e97720df32f4558abd83190a8ae06ce195f8c.png}, script: scripts/rig2d.js}
+  rotation: {lookAt: {x: 3.69, y: 1.2, z: 3.3600000000000008}}
+  scale: 1.2
+  state: {emotion: happy, idle: {breath: 1, duration: 4, hair: 1, sway: 1}, talk: false}
+  tags: [rig2d, review]
+review-shirtheld-label:
+  feetPosition: {x: 7.64, y: {terrain: 2.15}, z: 1.94}
+  id: review-shirtheld-label
+  rotation: {lookAt: {x: 3.69, y: 2.2, z: 3.3600000000000008}}
+  tags: [review]
+  vector: "<svg viewBox='0 0 200 40' width='0.7m'><rect x='2' y='2' width='196' height='36' rx='18' fill='#0a0a0c' fill-opacity='0.55'/><text x='100' y='27' text-anchor='middle' font-family='sans-serif' font-size='16' fill='#ffd9a0'>take: holding it shut</text></svg>"
+rig-emotion-label:
+  feetPosition: {x: 5.6, y: {terrain: 2.15}, z: -3.7}
+  id: rig-emotion-label
+  rotation: {lookAt: {x: 1.65, y: 2.2, z: -2.28}}
+  state: {text: happy}
+  vector: "<svg viewBox='0 0 200 40' width='0.7m'><rect x='2' y='2' width='196' height='36' rx='18' fill='#0a0a0c' fill-opacity='0.55'/><text x='100' y='27' text-anchor='middle' font-family='sans-serif' font-size='20' fill='#ffd9a0'>{{ state.text }}</text></svg>"
+rig-test-barista:
+  behavior: scripts/rig2d-actor.js
+  castShadow: true
+  feetPosition: {x: 5.6, y: {terrain: 0.15}, z: -3.7}
+  id: rig-test-barista
+  material: {alphaTest: 0.5, roughness: 1, side: double}
+  primitive: {kind: scripted, params: {layers: 2, mask: {samples: /cdn/value.7fe210738f5f3e5635d06024e9b587ae3c59a45ba81a95a4e3ca96b1844c3e47.png}, rev: 20, texture: /cdn/value.c67fa41dade5edb3b375d95237125c69dcdb3521de31c4e1df0617eedb451cb7.png}, script: scripts/rig2d.js}
+  rotation: {lookAt: {x: 1.65, y: 1.2, z: -2.28}}
+  scale: 1.2
+  state: {cycle: 3.5, emotion: happy, idle: {breath: 1, duration: 4, hair: 1, sway: 1}, label: rig-emotion-label}
+  tags: [rig2d]
